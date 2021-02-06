@@ -44,7 +44,6 @@ function createIsomorphLink() {
   return new HttpLink({
     uri:
       'https://api-us-east-1.graphcms.com/v2/ckkt3ejojinb701ywbg8zfrzj/master',
-    // credentials: 'same-origin',
   });
 }
 
