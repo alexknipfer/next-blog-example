@@ -2,6 +2,7 @@ query Post($where: PostWhereUniqueInput!) {
   post(where: $where) {
     title
     id
+    slug
     coverImage {
       url
     }
