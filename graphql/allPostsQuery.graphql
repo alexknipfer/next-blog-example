@@ -1,0 +1,15 @@
+query AllPostsQuery {
+  posts {
+    id
+    slug
+    title
+    date
+    author {
+      name
+      title
+      picture {
+        url
+      }
+    }
+  }
+}
