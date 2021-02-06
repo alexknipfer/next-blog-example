@@ -2,6 +2,7 @@ import BlogLayout from '@/layouts/BlogLayout';
 import { addApolloState, initializeApollo } from '@/lib/apolloClient';
 import { Post } from '@/models/Post';
 import {
+  Badge,
   Box,
   Breadcrumb,
   BreadcrumbItem,
@@ -15,6 +16,7 @@ import Author from '@/components/Author';
 import POST_QUERY from '@/graphql/postQuery.graphql';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { getReadTime } from 'utils/getReadTime';
 
 interface Props {
   post: Post;
@@ -38,6 +40,9 @@ export const BlogPost: NextPage<Props> = ({ post }) => {
         name={post.author.name}
         title={post.author.title}
       />
+      <Badge alignSelf="flex-start">
+        {getReadTime(post.content.html).readingDuration}
+      </Badge>
       <Box mt={5} dangerouslySetInnerHTML={{ __html: post.content.html }} />
     </BlogLayout>
   );
