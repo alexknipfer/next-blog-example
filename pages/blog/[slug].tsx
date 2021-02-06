@@ -1,22 +1,14 @@
 import BlogLayout from '@/layouts/BlogLayout';
 import { addApolloState, initializeApollo } from '@/lib/apolloClient';
 import { Post } from '@/models/Post';
-import {
-  Badge,
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Heading,
-} from '@chakra-ui/react';
+import { Badge, Box, Heading } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ALL_POSTS_QUERY from '@/graphql/allPostsQuery.graphql';
 import Image from 'next/image';
 import Author from '@/components/Author';
 import POST_QUERY from '@/graphql/postQuery.graphql';
-import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { getReadTime } from 'utils/getReadTime';
+import { getReadTime } from '@/utils/getReadTime';
 
 interface Props {
   post: Post;

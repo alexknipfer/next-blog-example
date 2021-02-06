@@ -13,7 +13,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import Author from '@/components/Author';
 import ALL_POSTS_QUERY from '@/graphql/allPostsQuery.graphql';
-import { getReadTime } from 'utils/getReadTime';
+import { getReadTime } from '@/utils/getReadTime';
 
 interface Props {
   posts: Post[];
