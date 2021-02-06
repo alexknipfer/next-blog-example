@@ -4,6 +4,9 @@ query AllPostsQuery {
     slug
     title
     date
+    content {
+      html
+    }
     author {
       name
       title
