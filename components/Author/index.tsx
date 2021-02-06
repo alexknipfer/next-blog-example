@@ -16,8 +16,12 @@ const Author: React.FC<Props> = ({ name, title, profilePicture }) => (
       className="profile-image"
     />
     <Box>
-      <Text color="gray.300">{name}</Text>
-      <Text color="gray.400">{title}</Text>
+      <Text color="gray.300" fontSize={['sm', 'md']}>
+        {name}
+      </Text>
+      <Text color="gray.400" fontSize={['sm', 'md']}>
+        {title}
+      </Text>
     </Box>
     <style jsx global>{`
       .profile-image {
