@@ -18,6 +18,7 @@ const Breadcrumbs: React.FC<Props> = ({ items }) => {
     <Breadcrumb mb={10}>
       {items.map((item, index) => (
         <BreadcrumbItem
+          key={`${item.name}-${index}`}
           isLastChild={items.length - 1 === index}
           isCurrentPage={router.asPath === item.href}
         >
