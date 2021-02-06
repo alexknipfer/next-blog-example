@@ -20,7 +20,8 @@
       "@/components/*": ["components/*"],
       "@/layouts/*": ["layouts/*"],
       "@/lib/*": ["lib/*"],
-      "@/models/*": ["models/*"]
+      "@/models/*": ["models/*"],
+      "@/graphql/*": ["graphql/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
