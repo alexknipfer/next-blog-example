@@ -42,11 +42,6 @@ const BlogPosts: NextPage<Props> = ({ posts }) => {
           <Divider my={5} />
         </Box>
       ))}
-      <style jsx global>{`
-        .profile-image {
-          border-radius: 50%;
-        }
-      `}</style>
     </BlogLayout>
   );
 };
