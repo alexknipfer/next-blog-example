@@ -11,8 +11,6 @@ interface Props {
 }
 
 const BlogPosts: NextPage<Props> = ({ posts }) => {
-  console.log('POSTS: ', posts);
-
   return (
     <BlogLayout>
       <Heading as="h1" mb={10}>
