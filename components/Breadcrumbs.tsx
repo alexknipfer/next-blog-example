@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 interface BreadcrumbItem {
   name: string;

@@ -1,57 +1,31 @@
 import BlogLayout from '@/layouts/BlogLayout';
-import { addApolloState, initializeApollo } from '@/lib/apolloClient';
 import { Post } from '@/models/Post';
-import {
-  Box,
-  Heading,
-  Text,
-  Link as ChakraLink,
-  Divider,
-  Badge,
-} from '@chakra-ui/react';
-import { NextPage } from 'next';
-import Link from 'next/link';
-import Author from '@/components/Author';
+import { Heading } from '@chakra-ui/react';
+import { GetServerSideProps, NextPage } from 'next';
 import ALL_POSTS_QUERY from '@/graphql/allPostsQuery.graphql';
-import { getReadTime } from '@/utils/getReadTime';
+import BlogPostCard from '@/components/BlogPostCard';
+import { addApolloState, initializeApollo } from '@/lib/apolloClient';
 
 interface Props {
   posts: Post[];
 }
 
 const BlogPosts: NextPage<Props> = ({ posts }) => {
+  console.log('POSTS: ', posts);
+
   return (
     <BlogLayout>
       <Heading as="h1" mb={10}>
         Latest
       </Heading>
       {posts.map((post) => (
-        <Box key={`${post.title}-${post.createdAt}`}>
-          <Text color="gray.500">{post.date}</Text>
-          <Text fontWeight="bold" fontSize={['lg', '2xl']}>
-            <ChakraLink as={Link} href={`/blog/${post.slug}`}>
-              {post.title}
-            </ChakraLink>
-          </Text>
-          <Author
-            profilePicture={post.author.picture.url}
-            name={post.author.name}
-            title={post.author.title}
-          />
-          <Badge>{getReadTime(post.content.html).readingDuration}</Badge>
-          <Divider my={5} />
-        </Box>
+        <BlogPostCard key={`${post.title}-${post.createdAt}`} post={post} />
       ))}
-      <style jsx global>{`
-        .profile-image {
-          border-radius: 50%;
-        }
-      `}</style>
     </BlogLayout>
   );
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo();
 
   const { data } = await apolloClient.query<{ posts: Post[] }>({
@@ -63,6 +37,6 @@ export async function getServerSideProps() {
       posts: data.posts,
     },
   });
-}
+};
 
 export default BlogPosts;

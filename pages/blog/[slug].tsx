@@ -1,13 +1,12 @@
 import BlogLayout from '@/layouts/BlogLayout';
 import { addApolloState, initializeApollo } from '@/lib/apolloClient';
-import { Post } from '@/models/Post';
-import { Badge, Box, Heading } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import ALL_POSTS_QUERY from '@/graphql/allPostsQuery.graphql';
-import Image from 'next/image';
-import Author from '@/components/Author';
+import { GetStaticProps, NextPage } from 'next';
 import POST_QUERY from '@/graphql/postQuery.graphql';
-import Breadcrumbs from '@/components/Breadcrumbs';
+import ALL_POSTS_QUERY from '@/graphql/allPostsQuery.graphql';
+import { Post } from '@/models/Post';
+import Image from 'next/image';
+import { Badge, Box, Heading } from '@chakra-ui/layout';
+import Author from '@/components/Author';
 import { getReadTime } from '@/utils/getReadTime';
 
 interface Props {
@@ -17,13 +16,7 @@ interface Props {
 export const BlogPost: NextPage<Props> = ({ post }) => {
   return (
     <BlogLayout>
-      <Breadcrumbs
-        items={[
-          { href: '/', name: 'Blogs' },
-          { href: `/blog/${post.slug}`, name: post.title },
-        ]}
-      />
-      <Image width={1280} height={720} src={post.coverImage.url} />
+      <Image width={1280} height={720} src={post.coverImage.url} priority />
       <Heading as="h1" mt={10} mb={5}>
         {post.title}
       </Heading>
@@ -42,7 +35,7 @@ export const BlogPost: NextPage<Props> = ({ post }) => {
 
 export default BlogPost;
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   const { data } = await apolloClient.query<{ posts: Post[] }>({
